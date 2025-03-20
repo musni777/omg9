@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #0a0a0a;
+    color: #00ffff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h2 {
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+}
+
+#status {
+    font-size: 18px;
+    font-weight: bold;
+    color: #00bfff;
+    text-shadow: 0 0 5px #00bfff;
+}
+
+#chat-box {
+    width: 400px;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+    box-shadow: 0 0 15px #00ffff;
+    margin-top: 20px;
+}
+
+.message {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #00ffff;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px 0;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.sent {
+    text-align: right;
+    background: rgba(0, 255, 255, 0.3);
+    border: 1px solid #0099cc;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #00ffff;
+    border-radius: 5px;
+    background: #000;
+    color: #00ffff;
+    font-size: 16px;
+    outline: none;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background: #00ffff;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 0 10px #00ffff;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0099cc;
+    box-shadow: 0 0 15px #0099cc;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ffff;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
