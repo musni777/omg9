@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <link rel="stylesheet" href="styles.css">  <!-- Link to the CSS file -->
+</head>
+<body>
+    <h2>Anonymous Chat</h2>
+    <p id="status">Connecting...</p>
+    <div id="chat-box"></div>
+    <input id="message" type="text" placeholder="Type a message..." disabled>
+    <button onclick="sendMessage()" disabled>Send</button>
+
+    <script>
+        const socket = io("http://localhost:5000"); // Change this when deploying
+
+        const statusText = document.getElementById("status");
+        const chatBox = document.getElementById("chat-box");
+        const messageInput = document.getElementById("message");
+        const sendButton = document.querySelector("button");
+
+        socket.on("chat-started", () => {
+            statusText.innerText = "Chat connected!";
+            messageInput.disabled = false;
+            sendButton.disabled = false;
+        });
+
+        socket.on("waiting", () => {
+            statusText.innerText = "Waiting for a partner...";
+        });
+
+        socket.on("message", (msg) => {
+            const msgElem = document.createElement("p");
+            msgElem.className = "message";
+            msgElem.innerText = msg;
+            chatBox.appendChild(msgElem);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
+
+        socket.on("partner-disconnected", () => {
+            statusText.innerText = "Partner disconnected. Waiting...";
+            messageInput.disabled = true;
+            sendButton.disabled = true;
+        });
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                socket.emit("message", message);
+                const msgElem = document.createElement("p");
+                msgElem.className = "message sent";
+                msgElem.innerText = message;
+                chatBox.appendChild(msgElem);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                messageInput.value = "";
+            }
+        }
+    </script>
+
+</body>
+</html>
